@@ -8,3 +8,7 @@ class Game(models.Model):
     publisher = models.CharField(max_length=50)
     release_year = models.IntegerField(validators=[MinValueValidator(1970), MaxValueValidator(2100)])
     banner_img = models.TextField()
+
+    @staticmethod
+    def filter_featured(limit):
+        return Game.objects.all().order_by('-rating')[:limit]

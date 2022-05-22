@@ -18,6 +18,7 @@ function HomeScreen({ navigation }) {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   const [data, setData] = React.useState([]);
+  const [featured, setfeatured] = React.useState([]);
 
   const handlePress = ({ title, id }) =>
     navigation.navigate("Movie", {
@@ -27,7 +28,27 @@ function HomeScreen({ navigation }) {
 
   useEffect(() => {
     setLoading(true);
+    fetch("http://127.0.0.1:8000/api/game/list/?option=featured")
+      .then((response) => response.json())
+      .then((featured = []) => {
+        if (!featured.length) {
+          setError('Erro, jogos não encontrados :( ');
+          return setLoading(false);
+        }
 
+        setLoading(false);
+        setfeatured(featured);
+
+        if (error) {
+          console.log(error);
+          setError(null);
+        }
+      })
+      .catch((e) => {
+        console.log(e)
+        setLoading(false);
+        setError('Erro.')
+      });
 
 
     fetch("http://127.0.0.1:8000/games/")
@@ -64,12 +85,12 @@ function HomeScreen({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Carousel data={data} onPress={handlePress}>
+        <Carousel data={featured} onPress={handlePress}>
         </Carousel>
         <MovieSection
           onPress={handlePress}
           data={data}
-          title="Latest movies"
+          title="Jogos recentes"
         ></MovieSection>
       </ScrollView>
     </SafeAreaView>
