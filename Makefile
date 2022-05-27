@@ -4,3 +4,6 @@ migrate:
 
 pip:
 	docker exec my-game-box-web-1 bash -c "pip install -r requirements.txt" 
+
+sh:
+	docker exec -it my-game-box-web-1 bash 
