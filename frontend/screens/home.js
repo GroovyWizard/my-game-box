@@ -28,7 +28,7 @@ function HomeScreen({ navigation }) {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://127.0.0.1:8000/api/game/list/?option=featured")
+    fetch("http://10.0.2.2:8000/api/game/list/?option=featured")
       .then((response) => response.json())
       .then((featured = []) => {
         if (!featured.length) {
@@ -51,7 +51,7 @@ function HomeScreen({ navigation }) {
       });
 
 
-    fetch("http://127.0.0.1:8000/games/")
+    fetch("http://10.0.2.2:8000/games/")
       .then((response) => response.json())
       .then((data = []) => {
         if (!data.length) {
