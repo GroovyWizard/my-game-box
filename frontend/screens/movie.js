@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from "@env";
-import { ActivityIndicator, View, Text } from "react-native";
+import { ActivityIndicator, ScrollView, View, Text } from "react-native";
 import { Tile } from "react-native-elements";
 
 function MovieScreen({ route }) {
@@ -11,7 +11,7 @@ function MovieScreen({ route }) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${API_BASE_URL}/movies/${id}`)
+    fetch(`${API_BASE_URL}:8000/games/${id}/`)
       .then((response) => response.json())
       .then((data) => {
         if (typeof data !== "object") {
@@ -38,16 +38,16 @@ function MovieScreen({ route }) {
     );
   if (error) return <Text>ERROR: {error}</Text>;
 
-  const { title, writer, poster, plot } = data;
+  const { name, publisher, banner_img, description } = data;
   return (
-    <View>
+    <ScrollView>
       <Tile
         imageSrc={{
-          uri: poster,
+          uri: banner_img,
         }}
-        title={title}
+        title={name}
         featured
-        caption={writer}
+        caption={publisher}
       />
       <View
         style={{
@@ -56,10 +56,10 @@ function MovieScreen({ route }) {
         }}
       >
         <View style={{ flex: 1 }}>
-          <Text>{plot}</Text>
+          <Text>{description}</Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

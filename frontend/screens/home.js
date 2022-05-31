@@ -28,7 +28,8 @@ function HomeScreen({ navigation }) {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://10.0.2.2:8000/api/game/list/?option=featured")
+    fetch(`${API_BASE_URL}:8000/api/game/list/?option=featured`)
+    // fetch("http://10.0.2.2:8000/api/game/list/?option=featured")
       .then((response) => response.json())
       .then((featured = []) => {
         if (!featured.length) {
@@ -51,7 +52,7 @@ function HomeScreen({ navigation }) {
       });
 
 
-    fetch("http://10.0.2.2:8000/games/")
+    fetch(`${API_BASE_URL}:8000/api/game/list/?option=featured`)
       .then((response) => response.json())
       .then((data = []) => {
         if (!data.length) {
@@ -83,17 +84,25 @@ function HomeScreen({ navigation }) {
   if (error) return <Text>ERROR: {error}</Text>;
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <Carousel data={featured} onPress={handlePress}>
-        </Carousel>
+    <ScrollView>
+      <ScrollView style={styles.scrollView}>
+        {/* <Carousel data={featured} onPress={handlePress}>
+        </Carousel> */}
         <MovieSection
           onPress={handlePress}
           data={data}
           title="Jogos recentes"
         ></MovieSection>
+
+        <MovieSection
+          onPress={handlePress}
+          data={featured}
+          title="Jogos mais bem avaliados"
+        ></MovieSection>
+       
+        
       </ScrollView>
-    </SafeAreaView>
+    </ScrollView>
   );
 }
 
@@ -106,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 24,
+    fontSize: 12,
     padding: 10,
     textAlign: "center",
   },
