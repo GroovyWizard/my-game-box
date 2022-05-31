@@ -12,7 +12,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import Carousel from "../components/carousel";
 import mockData from "../sample-data.json";
 import axios from "axios";
-
+import Login from "./login";
 
 function HomeScreen({ navigation }) {
   const [loading, setLoading] = React.useState(false);
@@ -85,8 +85,8 @@ function HomeScreen({ navigation }) {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Carousel data={featured} onPress={handlePress}>
-        </Carousel>
+        {/* <Carousel data={featured} onPress={handlePress}>
+        </Carousel> */}
         <MovieSection
           onPress={handlePress}
           data={data}

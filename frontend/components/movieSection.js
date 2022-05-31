@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import Login from "../screens/login";
 
 function MovieSection({ title, data, onPress }) {
   const keyExtractor = (item, index) => item.id;

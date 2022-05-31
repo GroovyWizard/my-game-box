@@ -4,12 +4,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeTab from "./tabs/home";
 import SearchTab from "./tabs/search";
 import { Ionicons } from "@expo/vector-icons";
-
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+    
     <NavigationContainer>
+
+
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
