@@ -7,9 +7,9 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import MovieSection from "../components/movieSection";
+import GameSection from "../components/gameSection";
 import { ScrollView } from "react-native-gesture-handler";
-import Carousel from "../components/carousel";
+import CarouselCards from "../components/carousel";
 import mockData from "../sample-data.json";
 import axios from "axios";
 
@@ -21,7 +21,7 @@ function HomeScreen({ navigation }) {
   const [featured, setfeatured] = React.useState([]);
 
   const handlePress = ({ title, id }) =>
-    navigation.navigate("Movie", {
+    navigation.navigate("Game", {
       id,
       title,
     });
@@ -88,17 +88,18 @@ function HomeScreen({ navigation }) {
       <ScrollView style={styles.scrollView}>
         {/* <Carousel data={featured} onPress={handlePress}>
         </Carousel> */}
-        <MovieSection
+        <CarouselCards data={data} > </CarouselCards>
+        <GameSection
           onPress={handlePress}
           data={data}
           title="Jogos recentes"
-        ></MovieSection>
+        ></GameSection>
 
-        <MovieSection
+        <GameSection
           onPress={handlePress}
           data={featured}
           title="Jogos mais bem avaliados"
-        ></MovieSection>
+        ></GameSection>
        
         
       </ScrollView>

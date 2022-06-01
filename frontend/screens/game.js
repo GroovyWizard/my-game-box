@@ -3,7 +3,7 @@ import { API_BASE_URL } from "@env";
 import { ActivityIndicator, ScrollView, View, Text } from "react-native";
 import { Tile } from "react-native-elements";
 
-function MovieScreen({ route }) {
+function GameScreen({ route }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState({});
@@ -63,4 +63,4 @@ function MovieScreen({ route }) {
   );
 }
 
-export default MovieScreen;
+export default GameScreen;

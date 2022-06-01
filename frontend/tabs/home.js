@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/home";
-import MovieScreen from "../screens/movie";
+import GameScreen from "../screens/game";
 
 const Stack = createStackNavigator();
 
@@ -16,8 +16,8 @@ function HomeTab() {
           component={HomeScreen}
         />
         <Stack.Screen
-          name="Movie"
-          component={MovieScreen}
+          name="Jogo"
+          component={GameScreen}
           options={({ route }) => ({ title: route.params.title })}
         />
       </Stack.Navigator>

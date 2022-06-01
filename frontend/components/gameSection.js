@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-function MovieSection({ title, data, onPress }) {
+function GameSection({ title, data, onPress }) {
   const keyExtractor = (item, index) => item.id;
 
   const renderItem = ({ item }) => (
@@ -45,7 +45,7 @@ function MovieSection({ title, data, onPress }) {
   );
 }
 
-export default MovieSection;
+export default GameSection;
 
 const styles = StyleSheet.create({
   container: {
