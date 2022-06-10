@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from "@env";
 import { ActivityIndicator, ScrollView, View, Text } from "react-native";
-import { Tile } from "react-native-elements";
+import { Button, Tile } from "react-native-elements";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function GameScreen({ route }) {
   const [loading, setLoading] = useState(true);
@@ -9,7 +10,18 @@ function GameScreen({ route }) {
   const [data, setData] = useState({});
   const { id } = route.params;
 
+  const storeFavorite = async (value) => {
+    try {
+      console.log("executed");
+      await AsyncStorage.setItem("@favorite", "ronaldo");
+    } catch (e) {
+      // saving error
+    }
+  };
+
   useEffect(() => {
+
+
     setLoading(true);
     fetch(`${API_BASE_URL}:8000/games/${id}/`)
       .then((response) => response.json())
@@ -55,6 +67,8 @@ function GameScreen({ route }) {
           padding: 20,
         }}
       >
+        <Button title="Favoritar jogo" onPress={storeFavorite} />
+
         <View style={{ flex: 1 }}>
           <Text>{description}</Text>
         </View>

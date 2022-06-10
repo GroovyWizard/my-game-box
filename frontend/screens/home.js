@@ -6,13 +6,14 @@ import {
   View,
   StyleSheet,
   ActivityIndicator,
+  FlatList,
 } from "react-native";
 import GameSection from "../components/gameSection";
 import { ScrollView } from "react-native-gesture-handler";
-import CarouselCards from "../components/carousel";
 import mockData from "../sample-data.json";
 import axios from "axios";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import favorites from '../data/data.json';
 
 function HomeScreen({ navigation }) {
   const [loading, setLoading] = React.useState(false);
@@ -21,11 +22,17 @@ function HomeScreen({ navigation }) {
   const [featured, setfeatured] = React.useState([]);
 
   const handlePress = ({ title, id }) =>
-    navigation.navigate("Game", {
+    navigation.navigate("Jogo", {
       id,
       title,
     });
 
+  const getData = async () => {
+  try {
+  } catch(e) {
+    // error reading value
+  }
+}
   useEffect(() => {
     setLoading(true);
     fetch(`${API_BASE_URL}:8000/api/game/list/?option=featured`)
@@ -86,15 +93,11 @@ function HomeScreen({ navigation }) {
   return (
     <ScrollView>
       <ScrollView style={styles.scrollView}>
-        {/* <Carousel data={featured} onPress={handlePress}>
-        </Carousel> */}
-        <CarouselCards data={data} > </CarouselCards>
         <GameSection
           onPress={handlePress}
           data={data}
           title="Jogos recentes"
         ></GameSection>
-
         <GameSection
           onPress={handlePress}
           data={featured}

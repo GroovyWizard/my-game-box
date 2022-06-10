@@ -1,0 +1,7 @@
+{
+  "name": "My Game Box",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
