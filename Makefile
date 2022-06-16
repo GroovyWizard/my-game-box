@@ -7,3 +7,6 @@ pip:
 
 up:
 	docker-compose up 
+
+sh:
+	docker exec -it my-game-box-web-1 bash 

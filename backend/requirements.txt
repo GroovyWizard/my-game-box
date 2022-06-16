@@ -2,3 +2,4 @@ Django>=3.0,<4.0
 django-cors-headers
 djangorestframework
 django_filter
+drf-yasg

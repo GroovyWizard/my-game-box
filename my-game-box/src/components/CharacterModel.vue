@@ -8,8 +8,8 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-button>
-        <ion-icon :icon="star" />
+      <ion-button v-on:click="showFavorites()">
+        <ion-icon   :icon="star" />
       </ion-button>
       {{ rating }}
     </ion-card-content>
@@ -21,7 +21,6 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonItem, IonLabel } from '@ionic/vue';
 import { pin, walk, warning, wifi, wine, star } from 'ionicons/icons';
-import { defineComponent } from 'vue';
 
 export default {
   components: [IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonItem, IonLabel],
@@ -31,6 +30,11 @@ export default {
     const editing = ref(false)
     const updated = ref(false)
     const newContent = ref('')
+    
+    function showFavorites(){
+      console.log(localStorage.getItem('user_id'))
+    }
+
     function toggleTodo() {
       emit('changedProgress', props.id)
     }
@@ -68,7 +72,7 @@ export default {
           updated.value = true
         });
     }
-    return { toggleTodo, rem, editing, newContent, nowEditing, updateTodo, cancelUpdateTodo, star }
+    return { showFavorites, toggleTodo, rem, editing, newContent, nowEditing, updateTodo, cancelUpdateTodo, star }
   }
 }
 </script>
