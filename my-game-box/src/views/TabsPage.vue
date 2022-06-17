@@ -13,14 +13,14 @@
           <ion-label>Pesquisar</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab3" href="/tabs/tab2">
+        <ion-tab-button tab="tab3" href="/tabs/favorites">
           <ion-icon :icon="star" />
           <ion-label>Favoritos</ion-label>
         </ion-tab-button>
 
 
         <ion-tab-button tab="login" href="/tabs/login">
-          <ion-icon :icon="triangle" />
+          <ion-icon :icon="person" />
           <ion-label>Perfil</ion-label>
         </ion-tab-button>
 

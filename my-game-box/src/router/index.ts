@@ -21,11 +21,16 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'tab2',
-        component: () => import('@/views/Tab2Page.vue')
+        component: () => import('@/views/SearchPage.vue')
       },
       {
         path: 'login',
         component: () => import('@/views/LoginPage.vue')
+      },
+      {
+        path: 'favorites',
+        component: () => import('@/views/FavoritePage.vue'),
+        props: true
       },
       {
         path: 'game/:id',
