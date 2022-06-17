@@ -11,6 +11,7 @@
     <div class="navv">
       <span :class="{ 'navsPlus': !addit, 'navs-activePlus': addit }" @click="selectNav(4)">+</span>
     </div>
+
     <ion-content :scroll-events="true">
       <div class="swiper-content">
         <swiper ref="mySwiper" :options="swiperOption" class="show-swiper">
@@ -24,12 +25,23 @@
         </swiper>
       </div>
 
-      <div class="content" v-for="todo in todos" :key="todo.id">
-        <Todo :name="todo.name" :rating="todo.rating" :imgUrl="todo.banner_img" :id="todo.id" :progress=false
-          @changedProgress="toggleOngoing" @remmed="removeTodo" @updatedContent="changeContent" />
-      </div>
+      <ion-content :scroll-events="true">
+        <div class="">
+          <h2> Jogos em Destaque </h2>
+          <swiper ref="featuredSwiper" :autoplay="true" :modules="modules" :options="swiperOption">
+            <template v-for="todo in todos" :key="todo.id">
+              <swiper-slide>
+                <div class="swiper-item">
+                  <Todo :name="todo.name" :rating="todo.rating" :imgUrl="todo.banner_img" :id="todo.id" :progress=false
+                    @changedProgress="toggleOngoing" @remmed="removeTodo" @updatedContent="changeContent" />
+                </div>
+              </swiper-slide>
+            </template>
+          </swiper>
 
+        </div>
 
+      </ion-content>
       <NewTodo @addtodo="updateTodos" />
     </ion-content>
   </ion-page>
@@ -41,7 +53,9 @@ import Todo from "../components/CharacterModel.vue"
 import NewTodo from "../components/NewCharacter.vue"
 import 'swiper/css';
 import '@ionic/vue/css/ionic-swiper.css';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import 'swiper/css/autoplay';
+import { IonPage, IonItem, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
 export default {
@@ -59,6 +73,11 @@ export default {
       todos: [],
     };
   },
+  setup() {
+      return {
+        modules: [Autoplay],
+      };
+    },
   methods: {
     async getData() {
       try {
@@ -77,6 +96,7 @@ export default {
 </script>
 
 <style scoped>
+
 .navv {
   margin-top: 10px;
   text-align: center;
