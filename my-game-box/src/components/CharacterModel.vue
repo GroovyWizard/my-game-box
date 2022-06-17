@@ -8,7 +8,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-button v-on:click="showFavorites()">
+      <ion-button v-on:click="goToGamePage" >
         <ion-icon :icon="star" />
       </ion-button>
       {{ rating }}
@@ -20,20 +20,23 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonItem, IonLabel } from '@ionic/vue';
-import { pin, walk, warning, wifi, wine, star } from 'ionicons/icons';
+import { star } from 'ionicons/icons';
 
 export default {
   components: [IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonItem, IonLabel],
   props: ['name', 'id', 'rating', 'progress', 'imgUrl'],
   emits: ['changedProgress', 'remmed', 'updatedContent'],
+
+  methods: {
+     goToGamePage(){
+      console.log(this.id)
+      this.$router.push(`/tabs/game/${this.id}`)
+    }
+  },
   setup(props, { emit }) {
     const editing = ref(false)
     const updated = ref(false)
     const newContent = ref('')
-
-    function showFavorites() {
-      console.log(localStorage.getItem('user_id'))
-    }
 
     function toggleTodo() {
       emit('changedProgress', props.id)
@@ -72,7 +75,7 @@ export default {
           updated.value = true
         });
     }
-    return { showFavorites, toggleTodo, rem, editing, newContent, nowEditing, updateTodo, cancelUpdateTodo, star }
+    return { toggleTodo, rem, editing, newContent, nowEditing, updateTodo, cancelUpdateTodo, star }
   }
 }
 </script>
@@ -92,8 +95,6 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-
-
 }
 
 .characterImage {

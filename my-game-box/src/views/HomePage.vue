@@ -8,9 +8,9 @@
     </ion-header>
 
 
-    <div class="navv">
+    <!-- <div class="navv">
       <span :class="{ 'navsPlus': !addit, 'navs-activePlus': addit }" @click="selectNav(4)">+</span>
-    </div>
+    </div> -->
 
     <ion-content :scroll-events="true">
       <div class="swiper-content">
@@ -27,7 +27,7 @@
 
       <ion-content :scroll-events="true">
         <div class="">
-          <h2> Jogos em Destaque </h2>
+          <h3 style="text-align: center;"> Jogos em Destaque </h3>
           <swiper ref="featuredSwiper" :autoplay="true" :modules="modules" :options="swiperOption">
             <template v-for="todo in todos" :key="todo.id">
               <swiper-slide>
