@@ -18,9 +18,12 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         username = self.request.query_params.get('username')
+        id = self.request.query_params.get('id')
         query = None
         if username is not None:
             query = self.queryset.filter(name=username)
+        elif id is not None:
+            query = self.queryset.filter(id=id)
         
         return query
 
