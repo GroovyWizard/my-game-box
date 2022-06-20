@@ -19,7 +19,12 @@
                 <h1> Nota pessoal: Não possui </h1>
             </ion-text>
             <!-- <Game :name="game.name" :rating="game.rating" :imgUrl="game.banner_img" :id="game.id" /> -->
-
+            <div id="rating">
+                <h3>Sua nota para este jogo:</h3>
+                <input type="text" name="rating" v-model="form.rating" placeholder="Sua nota" />
+                <br>
+                <ion-button v-on:click="favorite()"> Favoritar </ion-button>
+            </div>
         </ion-content>
 
 
@@ -30,6 +35,7 @@
 
 <script>
 import { IonBackButton, IonPage, IonItem, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import axios from 'axios';
 
 export default {
     name: 'GamePage',
@@ -41,6 +47,11 @@ export default {
     data() {
         return {
             game: [],
+            form: {
+                game: 0,
+                user: 0,
+                rating: 0
+            }
         };
     },
     methods: {
@@ -51,6 +62,19 @@ export default {
             } catch (error) {
                 console.log(error);
             }
+        },
+
+        favorite() {
+            this.form.game = this.id
+            this.form.user = localStorage.getItem("user_id")
+           
+            axios.post('http://127.0.0.1:8000/favorites/', this.form)
+                .then(() => {
+                    alert("Favorito salvo com sucesso")
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
     },
     created() {

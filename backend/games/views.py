@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import generics
-from .serializers import GameSerializer
-from .models import Game
+from .serializers import FavoriteSerializer, GameSerializer
+from .models import Game, Favorite
 
 class GameViewSet(viewsets.ModelViewSet):
     queryset = Game.objects.all().order_by('-release_year')
@@ -23,3 +23,8 @@ class GameListApi(generics.ListAPIView):
         elif option == 'recent':
             print('josi')
         return queryset
+
+
+class FavoriteViewSet(viewsets.ModelViewSet):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
