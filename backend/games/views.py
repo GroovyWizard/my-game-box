@@ -1,3 +1,5 @@
+import sys
+from django.http import HttpResponse
 from django.shortcuts import render
 from requests import Response
 from rest_framework import viewsets
@@ -30,11 +32,24 @@ class FavoriteViewSet(viewsets.ModelViewSet):
     queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
 
+    def create(self, request):
+        game = request.data['game']
+        user = request.data['user']
+        rating = request.data['rating']
+        to_save = Favorite.objects.update_or_create(
+            game_id=game, user_id=user, defaults={'rating': rating}
+        )
+        return HttpResponse("Ok")
+
+
     def get_queryset(self):
         queryset = Favorite.objects.all()
         user = self.request.query_params.get('user')
+        game = self.request.query_params.get('game')
 
-        if user:
+        if user and game:
+            return Favorite.objects.filter(user__id=user, game__id=game)
+        elif user: 
             return Favorite.objects.filter(user__id=user)
         else: 
             return queryset 

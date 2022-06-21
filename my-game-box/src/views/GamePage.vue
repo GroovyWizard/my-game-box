@@ -16,7 +16,7 @@
                 <h1> Publisher: {{ game.publisher }} </h1>
                 <h1> Ano de lançamento: {{ game.release_year }}</h1>
                 <h1> Nota Metacritic : {{ game.rating }}</h1>
-                <h1> Nota pessoal: Não possui </h1>
+                <h1> Nota pessoal: {{ favorite_rating }} </h1>
             </ion-text>
             <!-- <Game :name="game.name" :rating="game.rating" :imgUrl="game.banner_img" :id="game.id" /> -->
             <div id="rating">
@@ -62,7 +62,8 @@ export default {
                 game: 0,
                 user: 0,
                 rating: 0
-            }
+            },
+            favorite_rating: "Não possui"
         };
     },
     methods: {
@@ -74,11 +75,21 @@ export default {
                 console.log(error);
             }
         },
+        async getRating() {
+            let user = localStorage.getItem("user_id")
 
-        favorite() {
+            try {
+                let response = await fetch(`http://127.0.0.1:8000/favorites?user=${user}&game=${this.id}`);
+                let res = await response.json()
+                this.favorite_rating = res[0].rating;
+            } catch (error) {
+                alert(error);
+            }
+        },
+        async favorite() {
             this.form.game = this.id
             this.form.user = localStorage.getItem("user_id")
-           
+
             axios.post('http://127.0.0.1:8000/favorites/', this.form)
                 .then(() => {
                     alert("Favorito salvo com sucesso")
@@ -86,11 +97,15 @@ export default {
                 .catch((error) => {
                     console.log(error)
                 })
+                
+                await this.getRating();
 
-            this.getData();
         },
+
+
     },
     created() {
+        this.getRating();
         this.getData();
     },
 
