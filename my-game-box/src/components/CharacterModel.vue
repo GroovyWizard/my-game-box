@@ -9,9 +9,15 @@
 
     <ion-card-content>
       <ion-button v-on:click="goToGamePage" >
-        <ion-icon :icon="star" />
+        <ion-icon style="text-align: center;" :icon="eye"></ion-icon>
       </ion-button>
       {{ rating }}
+      <div v-if="favorited">
+        <ion-button color="danger" v-on:click="removeFavorite">
+            <ion-icon :icon="close"></ion-icon>
+        </ion-button>
+      </div>
+      {{ favorited }}
     </ion-card-content>
   </ion-card>
 </template>
@@ -20,17 +26,29 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonItem, IonLabel } from '@ionic/vue';
-import { star } from 'ionicons/icons';
+import { eye, close, ellipse, square, triangle, home, person, search, star } from 'ionicons/icons';
 
 export default {
   components: [IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonItem, IonLabel],
-  props: ['name', 'id', 'rating', 'progress', 'imgUrl'],
+  props: ['name', 'id', 'rating', 'progress', 'imgUrl', 'favorited'],
   emits: ['changedProgress', 'remmed', 'updatedContent'],
 
   methods: {
      goToGamePage(){
       console.log(this.id)
       this.$router.push(`/tabs/game/${this.id}`)
+    },
+
+    removeFavorite(){
+      console.log(this.id)
+      axios.delete(`http://localhost:8000/favorites/${this.id}`,
+        { data: { id: this.id }, headers: {} })
+        .then(() => {
+          alert("Jogo removido dos favoritos")
+        })
+        .catch(() => {
+          alert("Um erro ocorreu")
+        })
     }
   },
   setup(props, { emit }) {
@@ -42,15 +60,7 @@ export default {
       emit('changedProgress', props.id)
     }
     function rem() {
-      console.log(props.id)
-      axios.delete(`https://localhost:7022/Character/${props.id}`,
-        { data: { id: props.id }, headers: {} })
-        .then(() => {
-          alert("Personagem deletado com sucesso")
-        })
-        .catch(() => {
-          alert("Um erro ocorreu")
-        })
+      console.log()
     }
     function nowEditing() {
       editing.value = true
@@ -75,7 +85,7 @@ export default {
           updated.value = true
         });
     }
-    return { toggleTodo, rem, editing, newContent, nowEditing, updateTodo, cancelUpdateTodo, star }
+    return { close, eye, toggleTodo, rem, editing, newContent, nowEditing, updateTodo, cancelUpdateTodo}
   }
 }
 </script>

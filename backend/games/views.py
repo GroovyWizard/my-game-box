@@ -28,3 +28,12 @@ class GameListApi(generics.ListAPIView):
 class FavoriteViewSet(viewsets.ModelViewSet):
     queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
+
+    def get_queryset(self):
+        queryset = Favorite.objects.all()
+        user = self.request.query_params.get('user')
+
+        if user:
+            return Favorite.objects.filter(user__id=user)
+        else: 
+            return queryset 

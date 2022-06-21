@@ -15,7 +15,7 @@
 
         <ion-tab-button tab="tab3" href="/tabs/favorites">
           <ion-icon :icon="star" />
-          <ion-label>Favoritos</ion-label>
+          <ion-label>Minhas listas</ion-label>
         </ion-tab-button>
 
 

@@ -25,6 +25,17 @@
                 <br>
                 <ion-button v-on:click="favorite()"> Favoritar </ion-button>
             </div>
+
+            <div id="play-later">
+                <h3>Adicionar a jogar depois</h3>
+                <ion-button v-on:click="play_later()"> Adicionar </ion-button>
+            </div>
+
+            <div>
+                <h3>Adicionar aos terminados</h3>
+                <ion-button v-on:click="finished()"> Adicionar</ion-button>
+            </div>
+
         </ion-content>
 
 

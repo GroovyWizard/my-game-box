@@ -9,8 +9,13 @@
                 <ion-title>Favoritos</ion-title>
             </ion-toolbar>
         </ion-header>
+
         <ion-content scrollY>
-          <h1> PLACEHOLDER FAVORITOS </h1>
+            
+            <template v-for="game in games" :key="game.id" >
+                    <Game :favorited=true :name="game['game'].name" :rating="game['game'].rating" :imgUrl="game['game'].banner_img" :id="game['game'].id" :progress=false
+                    @changedProgress="toggleOngoing" @remmed="removeTodo" @updatedContent="changeContent" />
+            </template>
 
         </ion-content>
 
@@ -22,31 +27,35 @@
 
 <script>
 import { IonBackButton, IonPage, IonItem, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import Game from "../components/CharacterModel.vue"
+
 
 export default {
     name: 'FavoritePage',
     components: {
-        IonBackButton, IonHeader, IonToolbar, IonTitle, IonPage
+        Game, IonContent, IonBackButton, IonHeader, IonToolbar, IonTitle, IonPage
     },
     props: ['id'],
 
     data() {
         return {
-            game: [],
+            games: [],
+
         };
     },
     methods: {
         async getData() {
             try {
-                let response = await fetch(`http://127.0.0.1:8000/games/${this.id}`);
-                this.game = await response.json();
+                let user_id = localStorage.getItem("user_id")
+                let response = await fetch(`http://127.0.0.1:8000/favorites?id=${user_id}`);
+                this.games = await response.json();
             } catch (error) {
                 console.log(error);
             }
         },
     },
-    created() {
-        this.getData();
+    async mounted() {
+        await this.getData();
     },
 
 }
