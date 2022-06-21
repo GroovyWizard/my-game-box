@@ -11,9 +11,16 @@
         </ion-header>
 
         <ion-content scrollY>
-            
-            <template v-for="game in games" :key="game.id" >
-                    <Game :favorited=true :name="game['game'].name" :rating="game['game'].rating" :imgUrl="game['game'].banner_img" :id="game['game'].id" :progress=false
+
+            <ion-fab vertical="top" horizontal="end" slot="fixed">
+                <ion-button v-on:click="reloadPage">
+                    <ion-icon :icon="reload"></ion-icon>
+                </ion-button>
+            </ion-fab>
+
+            <template v-for="game in games" :key="game.id">
+                <Game :favorited=true :favorite_id="game.id" :name="game['game'].name" :rating="game['game'].rating"
+                    :imgUrl="game['game'].banner_img" :id="game['game'].id" :progress=false @reload="getData"
                     @changedProgress="toggleOngoing" @remmed="removeTodo" @updatedContent="changeContent" />
             </template>
 
@@ -26,14 +33,15 @@
 </template>
 
 <script>
-import { IonBackButton, IonPage, IonItem, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonBackButton, IonButton, IonPage, IonIcon, IonItem, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 import Game from "../components/CharacterModel.vue"
+import { reload, star } from 'ionicons/icons';
 
 
 export default {
     name: 'FavoritePage',
     components: {
-        Game, IonContent, IonBackButton, IonHeader, IonToolbar, IonTitle, IonPage
+        IonButton, Game, IonIcon, IonContent, IonBackButton, IonHeader, IonToolbar, IonTitle, IonPage
     },
     props: ['id'],
 
@@ -42,6 +50,9 @@ export default {
             games: [],
 
         };
+    },
+    setup() {
+        return { reload, star }
     },
     methods: {
         async getData() {
@@ -52,6 +63,9 @@ export default {
             } catch (error) {
                 console.log(error);
             }
+        },
+        async reloadPage(){
+            await this.getData();
         },
     },
     async mounted() {

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from requests import Response
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import generics
@@ -37,3 +38,4 @@ class FavoriteViewSet(viewsets.ModelViewSet):
             return Favorite.objects.filter(user__id=user)
         else: 
             return queryset 
+

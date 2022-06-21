@@ -1,16 +1,11 @@
 <template>
 
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Home</ion-title>
+    <ion-header >
+      <ion-toolbar >
+        <ion-title style=" ">Home</ion-title>
       </ion-toolbar>
     </ion-header>
-
-
-    <!-- <div class="navv">
-      <span :class="{ 'navsPlus': !addit, 'navs-activePlus': addit }" @click="selectNav(4)">+</span>
-    </div> -->
 
     <ion-content :scroll-events="true">
       <div class="swiper-content">
@@ -74,10 +69,10 @@ export default {
     };
   },
   setup() {
-      return {
-        modules: [Autoplay],
-      };
-    },
+    return {
+      modules: [Autoplay],
+    };
+  },
   methods: {
     async getData() {
       try {
@@ -96,7 +91,6 @@ export default {
 </script>
 
 <style scoped>
-
 .navv {
   margin-top: 10px;
   text-align: center;

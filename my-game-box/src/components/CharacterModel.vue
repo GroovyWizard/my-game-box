@@ -30,7 +30,7 @@ import { eye, close, ellipse, square, triangle, home, person, search, star } fro
 
 export default {
   components: [IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonItem, IonLabel],
-  props: ['name', 'id', 'rating', 'progress', 'imgUrl', 'favorited'],
+  props: ['name','favorite_id', 'id', 'rating', 'progress', 'imgUrl', 'favorited'],
   emits: ['changedProgress', 'remmed', 'updatedContent'],
 
   methods: {
@@ -40,11 +40,13 @@ export default {
     },
 
     removeFavorite(){
-      console.log(this.id)
-      axios.delete(`http://localhost:8000/favorites/${this.id}`,
+      console.log(this.favorite_id)
+      axios.delete(`http://localhost:8000/favorites/${this.favorite_id}`,
         { data: { id: this.id }, headers: {} })
         .then(() => {
           alert("Jogo removido dos favoritos")
+          this.$emit('reload');
+
         })
         .catch(() => {
           alert("Um erro ocorreu")
