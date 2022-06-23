@@ -1,24 +1,30 @@
       
 <template>
   <div>
-    <h2> Cadastrar Novo Personagem </h2>
-    <img class="moogle"
-      src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fimg4.wikia.nocookie.net%2F__cb20131211202525%2Ffinalfantasy%2Fimages%2F8%2F88%2FFFXIV_Delivery_Moogle.png&f=1&nofb=1">
+    <h2> Cadastrar Novo Jogo </h2>
     <form v-on:submit.prevent="submitForm">
       <div class="form-group">
         <label for="name">Nome</label>
-        <input type="text" class="form-control" id="name" placeholder="Cloud Strife" v-model="form.name">
+        <input type="text" class="form-control" id="name" placeholder="Final Fantasy XVI" v-model="form.name">
       </div>
       <div class="form-group">
-        <label for="game">Jogo</label>
-        <input type="game" class="form-control" id="game" placeholder="Final Fantasy III" v-model="form.game">
+        <label for="description">Descrição</label>
+        <input type="game" class="form-control" id="rating" placeholder="..." v-model="form.game">
+      </div>
+      <div class="form-group">
+        <label for="description">Publisher</label>
+        <input type="publisher" class="form-control" id="publisher" placeholder="Square Enix" v-model="form.game">
+      </div>
+      <div class="form-group">
+        <label for="rating">Nota IGDB</label>
+        <input type="rating" class="form-control" id="rating" placeholder="70" v-model="form.game">
       </div>
       <div class="form-group">
         <label for="game">Imagem</label>
-        <input type="imgUrl" class="form-control" id="imgUrl" placeholder="url" v-model="form.imgUrl">
+        <input type="bannerImg" class="form-control" id="bannerImg" placeholder="Url" v-model="form.imgUrl">
       </div>
       <div class="form-group">
-        <button class="btn btn-primary">Enviar</button>
+        <ion-button> Cadastrar </ion-button>
       </div>
     </form>
   </div>
@@ -26,7 +32,7 @@
   
 <script>
 import axios from 'axios';
-
+import { IonLabel, IonInput, IonItem , IonButton} from '@ionic/vue';
 export default {
   name: 'PostFormAxios',
   data() {
@@ -34,13 +40,14 @@ export default {
       form: {
         name: '',
         game: '',
+        banner_img: '',
         imgUrl: ''
       }
     }
   },
   methods: {
     submitForm() {
-      axios.post('https://localhost:7022/character', this.form)
+      axios.post('https://localhost:8000/games', this.form)
         .then(() => {
           alert("Personagem gravado com sucesso")
         })
@@ -53,6 +60,12 @@ export default {
 </script>
 
 <style scoped>
+
+input {
+  margin: 5px;
+}
+button{
+}
 .container-bg {
   margin-top: 20px;
   border-radius: 10px;

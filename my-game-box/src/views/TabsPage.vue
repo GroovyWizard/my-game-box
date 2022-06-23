@@ -18,7 +18,6 @@
           <ion-label>Minhas listas</ion-label>
         </ion-tab-button>
 
-
         <ion-tab-button tab="login" href="/tabs/login">
           <ion-icon :icon="person" />
           <ion-label>Perfil</ion-label>

@@ -1,10 +1,11 @@
 <template>
-    <div id="profile">
+    <div class="profile">
         <h1>Perfil</h1>
-        {{ user_id }}
-        {{ name }}
-      <ion-button v-on:click="logout()" >
-        Deslogar
+        <img style="width: 90px; height: 90px" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmultidoge.org%2Fimages%2FMultiDoge.png&f=1&nofb=1">
+        <p style="font-weight: bold;"> ID: {{ user_id }} </p>
+        <p> Nome: {{ name }} </p>
+      <ion-button color=danger v-on:click="logout()" >
+        Sair
       </ion-button >
     </div>
 </template>
@@ -52,3 +53,12 @@ export default {
 
 
 </script>
+
+<style scoped>
+.profile{
+    text-align: center;
+    padding: 30px;
+    margin: 30px;
+}
+
+</style>

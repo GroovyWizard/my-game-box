@@ -11,6 +11,8 @@ router = routers.DefaultRouter()
 router.register(r'games', views.GameViewSet)
 router.register(r'users', user_views.UserViewSet)
 router.register(r'favorites', views.FavoriteViewSet)
+router.register(r'played', views.PlayedViewSet)
+router.register(r'playing', views.PlayingViewSet)
 
 schema_view = get_schema_view(
    openapi.Info(

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 21 08:30:44 2022
+# Make data base, printed on Wed Jun 22 16:28:56 2022
 
 # Variables
 
@@ -21,7 +21,7 @@ NO_AT_BRIDGE = 1
 # environment
 I3SOCK = /run/user/1000/i3/ipc-socket.1292
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-e16b8646-eee3-4f8d-9817-c454fd7c5f8a.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d0813d02-b8c0-415a-abf5-ad638fa0d1f6.sock
 # environment
 VSCODE_CWD = /home/skeletor
 # default
@@ -81,7 +81,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 3106
+VSCODE_PID = 90336
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -265,6 +265,6 @@ sh:
 # strcache performance: lookups = 28 / hit rate = 28%
 # hash-table stats:
 # Load=20/8192=0%, Rehash=0, Collisions=0/28=0%
-# Finished Make data base on Tue Jun 21 08:30:44 2022
+# Finished Make data base on Wed Jun 22 16:28:56 2022
 
  

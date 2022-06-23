@@ -27,13 +27,11 @@
             </div>
 
             <div id="play-later">
-                <h3>Adicionar a jogar depois</h3>
-                <ion-button v-on:click="play_later()"> Adicionar </ion-button>
+                <ion-button v-on:click="play_later()"> Jogando </ion-button>
             </div>
 
             <div>
-                <h3>Adicionar aos terminados</h3>
-                <ion-button v-on:click="finished()"> Adicionar</ion-button>
+                <ion-button v-on:click="finished()"> Terminado </ion-button>
             </div>
 
         </ion-content>
@@ -61,7 +59,7 @@ export default {
             form: {
                 game: 0,
                 user: 0,
-                rating: 0
+                rating: 1
             },
             favorite_rating: "Não possui"
         };
@@ -83,7 +81,7 @@ export default {
                 let res = await response.json()
                 this.favorite_rating = res[0].rating;
             } catch (error) {
-                alert(error);
+                console.log(error);
             }
         },
         async favorite() {
@@ -97,10 +95,38 @@ export default {
                 .catch((error) => {
                     console.log(error)
                 })
-                
-                await this.getRating();
+
+            await this.getRating();
 
         },
+        async play_later() {
+            this.form.game = this.id
+            this.form.user = localStorage.getItem("user_id")
+
+            axios.post('http://127.0.0.1:8000/playing/', this.form)
+                .then(() => {
+                    alert("Salvo com sucesso na lista jogando")
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+
+            await this.getRating();
+        },
+        async finished() {
+            this.form.game = this.id
+            this.form.user = localStorage.getItem("user_id")
+
+            axios.post('http://127.0.0.1:8000/played/', this.form)
+                .then(() => {
+                    alert("Salvo com sucesso na lista de jogados")
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+
+            await this.getRating();
+        }
 
 
     },
