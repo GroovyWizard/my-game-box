@@ -2,6 +2,9 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button default-href="tab1"></ion-back-button>
+        </ion-buttons>
         <ion-title>Pesquisar Jogos</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -32,12 +35,12 @@
 </template>
 
 <script >
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonPage, IonBackButton, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 import Game from "../components/CharacterModel.vue"
 
 export default {
   name: 'SearchPage',
-  components: { Game, IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  components: { IonBackButton, Game, IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
   data() {
     return {
       form: {

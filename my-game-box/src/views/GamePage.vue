@@ -3,8 +3,8 @@
     <ion-page>
         <ion-header>
             <ion-toolbar>
-                <ion-buttons slot="start">
-                    <ion-back-button default-href="home"></ion-back-button>
+                 <ion-buttons slot="start">
+                    <ion-back-button default-href="tab1"></ion-back-button>
                 </ion-buttons>
                 <ion-title>Jogo</ion-title>
             </ion-toolbar>

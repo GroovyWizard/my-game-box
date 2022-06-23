@@ -4,7 +4,7 @@
         <ion-header>
             <ion-toolbar>
                 <ion-buttons slot="start">
-                    <ion-back-button default-href="home"></ion-back-button>
+                    <ion-back-button default-href="tab1"></ion-back-button>
                 </ion-buttons>
                 <ion-title>Minhas Listas</ion-title>
             </ion-toolbar>

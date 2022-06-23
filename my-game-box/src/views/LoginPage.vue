@@ -2,6 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
+    
         <ion-title>Login</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -38,7 +39,7 @@ export default defineComponent({
     }
   },
   methods: {
-    ForcesUpdateComponent(user_id:any) {
+    ForcesUpdateComponent(user_id: any) {
       this.loggedIn = user_id;
     }
   }
@@ -46,6 +47,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
- 
 </style>

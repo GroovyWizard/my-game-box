@@ -2,8 +2,17 @@
 
   <ion-page>
     <ion-header>
-      <ion-toolbar>
-        <ion-title style=" ">Home</ion-title>
+      <ion-toolbar style="text-align: center;">
+        <ion-title style="color: green; font-weight: bold;   text-shadow: 0.5px 0.5px green;
+ text-align: center;">My Game Box
+
+          <span>
+          </span>
+
+        </ion-title>
+        <img style="width: 30px; height: 30px;"
+          src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwikiclipart.com%2Fwp-content%2Fuploads%2F2017%2F01%2FTreasure-chest-free-to-use-clip-art-2.png&f=1&nofb=1">
+
       </ion-toolbar>
     </ion-header>
 
@@ -33,7 +42,7 @@
         </div>
 
         <div class="">
-          <h3 style="text-align: center;"> Jogos em Destaque  <br> (comunidade) </h3>
+          <h3 style="text-align: center;"> Jogos em Destaque <br> (comunidade) </h3>
           <swiper ref="featuredSwiper" :autoplay="true" :modules="modules" :options="swiperOption">
             <template v-for="todo in todos" :key="todo.id">
               <swiper-slide>
