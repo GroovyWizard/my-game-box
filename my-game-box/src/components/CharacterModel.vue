@@ -7,17 +7,25 @@
       <ion-card-title class="gametext">{{ name }}</ion-card-title>
     </ion-card-header>
 
-    <ion-card-content>
-      <ion-button v-on:click="goToGamePage" >
+    <ion-card-content style="text-align: center;">
+      <ion-button v-on:click="goToGamePage">
         <ion-icon style="text-align: center;" :icon="eye"></ion-icon>
       </ion-button>
-      {{ rating }}
-      <div v-if="favorited">
+      <span v-if="favorited">
         <ion-button color="danger" v-on:click="removeFavorite">
-            <ion-icon :icon="close"></ion-icon>
+          <ion-icon :icon="close"></ion-icon>
         </ion-button>
-      </div>
-      {{ favorited }}
+      </span>
+      <span v-else-if="playing">
+        <ion-button color="secondary" v-on:click="removePlaying">
+          <ion-icon :icon="close"></ion-icon>
+        </ion-button>
+      </span>
+      <span v-else-if="played">
+          <ion-button color="tertiary" v-on:click="removePlayed">
+            <ion-icon :icon="close"></ion-icon>
+          </ion-button>
+      </span>
     </ion-card-content>
   </ion-card>
 </template>
@@ -30,16 +38,16 @@ import { eye, close, ellipse, square, triangle, home, person, search, star } fro
 
 export default {
   components: [IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonIcon, IonItem, IonLabel],
-  props: ['name','favorite_id', 'id', 'rating', 'progress', 'imgUrl', 'favorited'],
+  props: ['played_id', 'playing_id', 'name', 'favorite_id', 'id', 'rating', 'progress', 'imgUrl', 'favorited', 'played', 'playing'],
   emits: ['changedProgress', 'remmed', 'updatedContent'],
 
   methods: {
-     goToGamePage(){
+    goToGamePage() {
       console.log(this.id)
       this.$router.push(`/tabs/game/${this.id}`)
     },
 
-    removeFavorite(){
+    removeFavorite() {
       console.log(this.favorite_id)
       axios.delete(`http://localhost:8000/favorites/${this.favorite_id}`,
         { data: { id: this.id }, headers: {} })
@@ -51,8 +59,40 @@ export default {
         .catch(() => {
           alert("Um erro ocorreu")
         })
+    },
+
+
+    removePlayed() {
+      console.log(this.played_id)
+      axios.delete(`http://localhost:8000/played/${this.played_id}`,
+        { data: { id: this.id }, headers: {} })
+        .then(() => {
+          alert("Jogo removido dos Terminados")
+          this.$emit('reload');
+
+        })
+        .catch(() => {
+          alert("Um erro ocorreu")
+        })
+    },
+
+    removePlaying() {
+      console.log(this.playing_id)
+      axios.delete(`http://localhost:8000/playing/${this.playing_id}`,
+        { data: { id: this.id }, headers: {} })
+        .then(() => {
+          alert("Jogo removido da lista Jogando")
+          this.$emit('reload');
+
+        })
+        .catch(() => {
+          alert("Um erro ocorreu")
+        })
     }
   },
+
+
+
   setup(props, { emit }) {
     const editing = ref(false)
     const updated = ref(false)
@@ -87,7 +127,7 @@ export default {
           updated.value = true
         });
     }
-    return { close, eye, toggleTodo, rem, editing, newContent, nowEditing, updateTodo, cancelUpdateTodo}
+    return { close, eye, toggleTodo, rem, editing, newContent, nowEditing, updateTodo, cancelUpdateTodo }
   }
 }
 </script>

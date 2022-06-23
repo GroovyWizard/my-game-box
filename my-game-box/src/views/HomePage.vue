@@ -21,7 +21,7 @@
 
         <div class="swiper-content">
           <swiper ref="mySwiper" :autoplay="true" :modules="modules" :options="swiperOption" class="show-swiper">
-            <template v-for="todo in todos" :key="todo.id">
+            <template v-for="todo in recent" :key="todo.id">
               <swiper-slide>
                 <div class="swiper-item">
                   <span><img style="width: 400px; height: 250px" class="banner" v-bind:src="todo.banner_img"></span>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="">
-          <h3 style="text-align: center;"> Jogos em Destaque </h3>
+          <h3 style="text-align: center;"> Jogos em Destaque  <br> (comunidade) </h3>
           <swiper ref="featuredSwiper" :autoplay="true" :modules="modules" :options="swiperOption">
             <template v-for="todo in todos" :key="todo.id">
               <swiper-slide>

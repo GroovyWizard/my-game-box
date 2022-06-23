@@ -12,10 +12,10 @@
         </ion-toolbar>
       </ion-header>
       <div v-if="loggedIn">
-        <ProfileModel @reload="ForcesUpdateComponent($event)" />
+        <ProfileModel @reload="ForcesUpdateComponent($event);" />
       </div>
       <div v-else>
-        <RegisterModel />
+        <RegisterModel @reload="ForcesUpdateComponent($event);" />
         <LoginModel @reload="ForcesUpdateComponent($event);" />
       </div>
     </ion-content>
@@ -44,3 +44,8 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+
+ 
+</style>

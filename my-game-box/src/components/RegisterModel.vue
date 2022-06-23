@@ -1,9 +1,11 @@
 <template>
     <div id="register">
         <h1>Registre-se</h1>
-        <input type="text" name="username" v-model="input.username" placeholder="Username" />
-        <input type="password" name="password" v-model="input.password" placeholder="Password" />
-        <button type="button" v-on:click="register()">Login</button>
+        <input type="text" name="username" v-model="input.name" placeholder="Usuario" />
+        <br>
+        <input type="password" name="password" v-model="input.password" placeholder="Senha" />
+        <br>
+        <ion-button type="button" v-on:click="register()">Registrar</ion-button>
     </div>
 </template>
 
@@ -15,22 +17,25 @@ export default {
     data() {
         return {
             input: {
-                username: "",
+                name: "",
                 password: ""
             }
         }
     },
     methods: {
-        async login() {
-            axios
-                try {
-                    let response = await fetch(`http://127.0.0.1:8000/users?username=${this.input.username}`);
-                    let res = await response.json();
-                    localStorage.setItem("user_id", res[0].id)
-                    localStorage.setItem("user_name", res[0].name)
-                } catch (error) {
-                    console.log(error);
-                }
+        async register() {
+            try {
+                let response = await axios.post("http://127.0.0.1:8000/users/", this.input);
+                let res = await response;
+                localStorage.setItem("user_id", res.data.id)
+                alert("Registrado com sucesso");
+                this.$emit('reload', localStorage.getItem("user_id"));
+
+            } catch (error) {
+                console.log(error);
+                alert("Oops um erro ocorreu.")
+            }
+
         }
     }
 }
@@ -38,10 +43,10 @@ export default {
 
 <style scoped>
 #register {
-    width: 500px;
+    text-align: center;
     border: 1px solid #CCCCCC;
     background-color: #FFFFFF;
-    margin: auto;
-    padding: 20px;
+    margin: 10px;
+    padding: 10px;
 }
 </style>

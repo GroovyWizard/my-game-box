@@ -9,30 +9,36 @@
                 <ion-title>Jogo</ion-title>
             </ion-toolbar>
         </ion-header>
-        <ion-content scrollY>
+        <ion-content scrollY style="text-align: center;">
             <ion-img :src="game.banner_img"></ion-img>
             <ion-text>
-                <h1> {{ game.name }} </h1>
-                <h1> Publisher: {{ game.publisher }} </h1>
-                <h1> Ano de lançamento: {{ game.release_year }}</h1>
-                <h1> Nota Metacritic : {{ game.rating }}</h1>
-                <h1> Nota pessoal: {{ favorite_rating }} </h1>
+                <h1> {{ game.name }} ( {{ game.release_year }} ) </h1>
+                Nota IGDB :  <span style="font-weight: bold;"> {{ game.rating }}</span>
+                Nota pessoal: <span style="font-weight: bold;"> {{ favorite_rating }} </span>
+                <h4 style="color: blue;"> Publisher: {{ game.publisher }} </h4>
+
             </ion-text>
-            <!-- <Game :name="game.name" :rating="game.rating" :imgUrl="game.banner_img" :id="game.id" /> -->
-            <div id="rating">
-                <h3>Sua nota para este jogo:</h3>
-                <input type="text" name="rating" v-model="form.rating" placeholder="Sua nota" />
-                <br>
-                <ion-button v-on:click="favorite()"> Favoritar </ion-button>
-            </div>
+            <ion-grid style="">
+                <ion-row class="ion-align-items-center">
+                    <ion-col size="12" class="ion-align-items-center">
+                        <h3>Sua nota para este jogo:</h3>
+                        <input type="text" name="rating" v-model="form.rating"
+                            placeholder="Sua nota" />
+                        <br>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <h3> Adicionar a Lista: </h3>
+             <span id="favorite">
+                    <ion-button color=warning v-on:click="favorite()"> Favoritar </ion-button>
+                </span>
+                <span id="play-later">
+                    <ion-button color=success v-on:click="play_later()"> Jogando </ion-button>
+                </span>
+                <span>
+                    <ion-button color=tertiary v-on:click="finished()"> Terminado </ion-button>
+                </span>
 
-            <div id="play-later">
-                <ion-button v-on:click="play_later()"> Jogando </ion-button>
-            </div>
-
-            <div>
-                <ion-button v-on:click="finished()"> Terminado </ion-button>
-            </div>
 
         </ion-content>
 
@@ -43,13 +49,13 @@
 </template>
 
 <script>
-import { IonBackButton, IonPage, IonItem, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonBackButton, IonPage, IonCol, IonRow, IonGrid, IonItem, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 import axios from 'axios';
 
 export default {
     name: 'GamePage',
     components: {
-        IonBackButton, IonHeader, IonToolbar, IonTitle, IonPage
+        IonBackButton, IonRow, IonCol, IonGrid, IonHeader, IonToolbar, IonTitle, IonPage
     },
     props: ['id'],
 

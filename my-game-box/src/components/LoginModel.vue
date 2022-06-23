@@ -1,9 +1,12 @@
 <template>
     <div id="login">
         <h1>Login</h1>
-        <input type="text" name="username" v-model="input.username" placeholder="Username" />
-        <input type="password" name="password" v-model="input.password" placeholder="Password" />
-        <button type="button" v-on:click="login()">Login</button>
+        <br>
+        <input type="text" name="username" v-model="input.username" placeholder="Usuario" />
+        <br>
+        <input type="password" name="password" v-model="input.password" placeholder="Senha" />
+        <br>
+        <ion-button color=success type="button" v-on:click="login()">Login</ion-button>
     </div>
     
 </template>
@@ -23,7 +26,6 @@ export default {
     },
     methods: {
         async login() {
-            axios
                 try {
                     let response = await fetch(`http://127.0.0.1:8000/users?username=${this.input.username}`);
                     let res = await response.json();
@@ -40,11 +42,10 @@ export default {
 
 <style scoped>
 #login {
-    width: 500px;
+    text-align: center;
     border: 1px solid #CCCCCC;
     background-color: #FFFFFF;
-    margin: auto;
-    margin-top: 20px;
-    padding: 20px;
+    margin: 10px;
+    padding: 10px;
 }
 </style>

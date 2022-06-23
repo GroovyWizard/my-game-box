@@ -33,7 +33,7 @@
                     <template v-for="game in games" :key="game.id">
                         <swiper-slide>
                             <div class="swiper-item">
-                                <Game :favorited=true :name="game['game'].name" :rating="game['game'].rating"
+                                <Game :favorite_id="game.id" :favorited=true :name="game['game'].name" :rating="game['game'].rating"
                                     :imgUrl="game['game'].banner_img" :id="game['game'].id" :progress=false
                                     @changedProgress="toggleOngoing" @remmed="removeTodo"
                                     @updatedContent="changeContent" />
@@ -50,7 +50,7 @@
                 <template v-for="game in playLater" :key="game.id">
                     <swiper-slide>
                         <div class="swiper-item">
-                            <Game :name="game['game'].name" :rating="game['game'].rating"
+                            <Game :played_id="game.id" :played=true :name="game['game'].name" :rating="game['game'].rating"
                                 :imgUrl="game['game'].banner_img" :id="game['game'].id" :progress=false
                                 @changedProgress="toggleOngoing" @remmed="removeTodo" @updatedContent="changeContent" />
                         </div>
@@ -64,7 +64,7 @@
                 <template v-for="game in playing" :key="game.id">
                     <swiper-slide>
                         <div class="swiper-item">
-                            <Game :name="game['game'].name" :rating="game['game'].rating"
+                            <Game :playing_id="game.id" :playing=true :name="game['game'].name" :rating="game['game'].rating"
                                 :imgUrl="game['game'].banner_img" :id="game['game'].id" :progress=false
                                 @changedProgress="toggleOngoing" @remmed="removeTodo" @updatedContent="changeContent" />
                         </div>

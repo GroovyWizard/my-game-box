@@ -1,5 +1,6 @@
+from http.client import BAD_REQUEST
 import sys
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from requests import Response
 from rest_framework import viewsets
@@ -12,6 +13,15 @@ class GameViewSet(viewsets.ModelViewSet):
     queryset = Game.objects.all().order_by('-release_year')
     serializer_class = GameSerializer
 
+    def get_queryset(self):
+        queryset = Game.objects.all().order_by('-release_year')
+        option = self.request.query_params.get('option')
+        if option:
+            filter =  Game.objects.filter(name__startswith=option) 
+            return filter 
+        else:
+            return queryset 
+        
 class GameListApi(generics.ListAPIView):
     serializer_class = GameSerializer
 
