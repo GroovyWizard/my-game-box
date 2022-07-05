@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jun 22 16:28:56 2022
+# Make data base, printed on Mon Jul  4 23:02:39 2022
 
 # Variables
 
@@ -19,9 +17,9 @@ LC_ALL = C
 # environment
 NO_AT_BRIDGE = 1
 # environment
-I3SOCK = /run/user/1000/i3/ipc-socket.1292
+I3SOCK = /run/user/1000/i3/ipc-socket.1831
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d0813d02-b8c0-415a-abf5-ad638fa0d1f6.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-147fdf26-d7cc-45b2-9500-118c9f347d62.sock
 # environment
 VSCODE_CWD = /home/skeletor
 # default
@@ -81,7 +79,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 90336
+VSCODE_PID = 4228
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
@@ -111,7 +109,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/home/skeletor/.dotnet/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+PATH = /usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/opt/android-sdk/platform-tools:/home/skeletor/.dotnet/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 # default
 MAKEFILES := 
 # environment
@@ -265,6 +263,8 @@ sh:
 # strcache performance: lookups = 28 / hit rate = 28%
 # hash-table stats:
 # Load=20/8192=0%, Rehash=0, Collisions=0/28=0%
-# Finished Make data base on Wed Jun 22 16:28:56 2022
+# Finished Make data base on Mon Jul  4 23:02:39 2022
 
  
+make: *** No rule to make target 'all'.  Stop.
+
