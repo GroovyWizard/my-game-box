@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "My Game Box",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}
